@@ -1,0 +1,93 @@
+--- mate-keyring-1.6.0/docs/reference/gcr/Makefile.am.orig	2013-03-31 12:28:51.000000000 +0200
++++ mate-keyring-1.6.0/docs/reference/gcr/Makefile.am	2013-12-29 21:42:28.555880022 +0100
+@@ -21,7 +21,7 @@
+ # gtk-doc will search all .c & .h files beneath here for inline comments
+ # documenting the functions and macros.
+ # e.g. DOC_SOURCE_DIR=../../../gtk
+-DOC_SOURCE_DIR=../../../$(DOC_MODULE)
++DOC_SOURCE_DIR=../../../gcr
+ 
+ # Extra options to pass to gtkdoc-scangobj. Not normally needed.
+ SCANGOBJ_OPTIONS=
+@@ -48,8 +48,8 @@
+ # Used for dependencies. The docs will be rebuilt if any of these change.
+ # e.g. HFILE_GLOB=$(top_srcdir)/gtk/*.h
+ # e.g. CFILE_GLOB=$(top_srcdir)/gtk/*.c
+-HFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.h
+-CFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.c
++HFILE_GLOB=$(top_srcdir)/gcr/*.h
++CFILE_GLOB=$(top_srcdir)/gcr/*.c
+ 
+ # Extra header to include when scanning, which are not under DOC_SOURCE_DIR
+ # e.g. EXTRA_HFILES=$(top_srcdir}/contrib/extra.h
+@@ -79,7 +79,7 @@
+ # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
+ GTKDOC_CFLAGS= -I$(top_srcdir) -I$(top_builddir) $(GOBJECT_CFLAGS) -Wno-error
+ GTKDOC_LIBS= $(GOBJECT_LIBS) \
+-	$(top_builddir)/$(DOC_MODULE)/lib$(DOC_MODULE)@GCR_VERSION_SUFFIX@.la \
++	$(top_builddir)/gcr/libmategcr@GCR_VERSION_SUFFIX@.la \
+ 	$(top_builddir)/gck/libmategck.la
+ 
+ # This includes the standard gtk-doc make rules, copied by gtkdocize.
+--- mate-keyring-1.6.0/gcr/gcr-certificate-basics-widget.h.orig	2013-03-31 12:28:51.000000000 +0200
++++ mate-keyring-1.6.0/gcr/gcr-certificate-basics-widget.h	2013-12-30 07:45:35.904361382 +0100
+@@ -36,7 +36,7 @@
+ 
+ G_BEGIN_DECLS
+ 
+-#define GCR_TYPE_CERTIFICATE_BASICS_WIDGET               (gcr_certificate_basics_widget_get_type ())
++#define GCR_TYPE_CERTIFICATE_BASICS_WIDGET               (gcr_certificate_widget_get_type ())
+ #define GCR_CERTIFICATE_BASICS_WIDGET(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), GCR_TYPE_CERTIFICATE_BASICS_WIDGET, GcrCertificateBasicsWidget))
+ #define GCR_CERTIFICATE_BASICS_WIDGET_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), GCR_TYPE_CERTIFICATE_BASICS_WIDGET, GcrCertificateBasicsWidgetClass))
+ #define GCR_IS_CERTIFICATE_BASICS_WIDGET(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GCR_TYPE_CERTIFICATE_BASICS_WIDGET))
+@@ -46,8 +46,6 @@ G_BEGIN_DECLS
+ typedef GcrCertificateWidget GcrCertificateBasicsWidget;
+ typedef GcrCertificateWidgetClass GcrCertificateBasicsWidgetClass;
+ 
+-GType                        gcr_certificate_basics_widget_get_type               (void);
+-
+ GcrCertificateBasicsWidget*  gcr_certificate_basics_widget_new                    (GcrCertificate *cert);
+ 
+ GcrCertificate*              gcr_certificate_basics_widget_get_certificate        (GcrCertificateBasicsWidget *basics);
+--- mate-keyring-1.6.0/gcr/gcr-certificate-details-widget.h.orig	2013-03-31 12:28:51.000000000 +0200
++++ mate-keyring-1.6.0/gcr/gcr-certificate-details-widget.h	2013-12-30 07:46:38.854358741 +0100
+@@ -35,7 +35,7 @@
+ 
+ G_BEGIN_DECLS
+ 
+-#define GCR_TYPE_CERTIFICATE_DETAILS_WIDGET               (gcr_certificate_details_widget_get_type ())
++#define GCR_TYPE_CERTIFICATE_DETAILS_WIDGET               (gcr_certificate_widget_get_type ())
+ #define GCR_CERTIFICATE_DETAILS_WIDGET(obj)               (G_TYPE_CHECK_INSTANCE_CAST ((obj), GCR_TYPE_CERTIFICATE_DETAILS_WIDGET, GcrCertificateDetailsWidget))
+ #define GCR_CERTIFICATE_DETAILS_WIDGET_CLASS(klass)       (G_TYPE_CHECK_CLASS_CAST ((klass), GCR_TYPE_CERTIFICATE_DETAILS_WIDGET, GcrCertificateDetailsWidgetClass))
+ #define GCR_IS_CERTIFICATE_DETAILS_WIDGET(obj)            (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GCR_TYPE_CERTIFICATE_DETAILS_WIDGET))
+@@ -45,8 +45,6 @@ G_BEGIN_DECLS
+ typedef GcrCertificateWidget GcrCertificateDetailsWidget;
+ typedef GcrCertificateWidgetClass GcrCertificateDetailsWidgetClass;
+ 
+-GType                         gcr_certificate_details_widget_get_type               (void);
+-
+ GcrCertificateDetailsWidget*  gcr_certificate_details_widget_new                    (GcrCertificate *cert);
+ 
+ GcrCertificate*               gcr_certificate_details_widget_get_certificate        (GcrCertificateDetailsWidget *details);
+--- mate-keyring-1.6.0/docs/reference/gck/Makefile.am.orig	2013-03-31 12:28:51.000000000 +0200
++++ mate-keyring-1.6.0/docs/reference/gck/Makefile.am	2013-12-30 08:01:43.787654100 +0100
+@@ -49,8 +49,8 @@
+ # Used for dependencies. The docs will be rebuilt if any of these change.
+ # e.g. HFILE_GLOB=$(top_srcdir)/gtk/*.h
+ # e.g. CFILE_GLOB=$(top_srcdir)/gtk/*.c
+-HFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.h
+-CFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.c
++HFILE_GLOB=$(top_srcdir)/gck/*.h
++CFILE_GLOB=$(top_srcdir)/gck/*.c
+ 
+ # Extra header to include when scanning, which are not under DOC_SOURCE_DIR
+ # e.g. EXTRA_HFILES=$(top_srcdir}/contrib/extra.h
+@@ -79,7 +79,7 @@
+ # e.g. GTKDOC_CFLAGS=-I$(top_srcdir) -I$(top_builddir) $(GTK_DEBUG_FLAGS)
+ # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
+ GTKDOC_CFLAGS= -I$(top_srcdir) -I$(top_builddir) $(GOBJECT_CFLAGS) -Wno-error
+-GTKDOC_LIBS= $(GOBJECT_LIBS) $(top_builddir)/$(DOC_MODULE)/lib$(DOC_MODULE).la
++GTKDOC_LIBS= $(GOBJECT_LIBS) $(top_builddir)/gck/libmategck.la
+ 
+ # This includes the standard gtk-doc make rules, copied by gtkdocize.
+ include $(top_srcdir)/gtk-doc.make
