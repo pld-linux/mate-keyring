@@ -6,12 +6,12 @@
 Summary:	Keep passwords and other user's secrets
 Summary(pl.UTF-8):	Przechowywanie haseł i innych tajnych danych użytkowników
 Name:		mate-keyring
-Version:	1.6.0
+Version:	1.6.1
 Release:	1
 License:	LGPL v2+ (library), GPL v2+ (programs)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	46aebb2d0c612f9281e48ce874109871
+# Source0-md5:	3691d4d42ce7db525e6374b1e6505677
 Patch0:		%{name}-doc.patch
 Patch1:		%{name}-names.patch
 URL:		http://mate-desktop.org/
@@ -197,6 +197,8 @@ fi
 %{_datadir}/glib-2.0/schemas/org.mate.crypto.*.gschema.xml
 %{_datadir}/mate-keyring
 %{_datadir}/mategcr
+%{_mandir}/man1/mate-keyring.1*
+%{_mandir}/man1/mate-keyring-daemon.1*
 
 %files libs
 %defattr(644,root,root,755)

@@ -1,31 +1,41 @@
---- mate-keyring-1.6.0/docs/reference/gcr/Makefile.am.orig	2013-03-31 12:28:51.000000000 +0200
-+++ mate-keyring-1.6.0/docs/reference/gcr/Makefile.am	2013-12-29 21:42:28.555880022 +0100
-@@ -21,7 +21,7 @@
+--- mate-keyring-1.6.1/docs/reference/gcr/Makefile.am.orig	2014-01-01 13:15:45.000000000 +0100
++++ mate-keyring-1.6.1/docs/reference/gcr/Makefile.am	2014-01-02 17:26:23.878688026 +0100
+@@ -9,7 +9,8 @@
+ # of using the various options.
+ 
+ # The name of the module, e.g. 'glib'.
+-DOC_MODULE=gcr
++DOC_MODULE=mate-gcr
++SRC_MODULE=gcr
+ 
+ # Uncomment for versioned docs and specify the version of the module, e.g. '2'.
+ DOC_MODULE_VERSION=@GCR_MAJOR@
+@@ -21,7 +22,7 @@
  # gtk-doc will search all .c & .h files beneath here for inline comments
  # documenting the functions and macros.
  # e.g. DOC_SOURCE_DIR=../../../gtk
 -DOC_SOURCE_DIR=../../../$(DOC_MODULE)
-+DOC_SOURCE_DIR=../../../gcr
++DOC_SOURCE_DIR=../../../$(SRC_MODULE)
  
  # Extra options to pass to gtkdoc-scangobj. Not normally needed.
  SCANGOBJ_OPTIONS=
-@@ -48,8 +48,8 @@
+@@ -48,8 +49,8 @@
  # Used for dependencies. The docs will be rebuilt if any of these change.
  # e.g. HFILE_GLOB=$(top_srcdir)/gtk/*.h
  # e.g. CFILE_GLOB=$(top_srcdir)/gtk/*.c
 -HFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.h
 -CFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.c
-+HFILE_GLOB=$(top_srcdir)/gcr/*.h
-+CFILE_GLOB=$(top_srcdir)/gcr/*.c
++HFILE_GLOB=$(top_srcdir)/$(SRC_MODULE)/*.h
++CFILE_GLOB=$(top_srcdir)/$(SRC_MODULE)/*.c
  
  # Extra header to include when scanning, which are not under DOC_SOURCE_DIR
  # e.g. EXTRA_HFILES=$(top_srcdir}/contrib/extra.h
-@@ -79,7 +79,7 @@
+@@ -79,7 +80,7 @@
  # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
  GTKDOC_CFLAGS= -I$(top_srcdir) -I$(top_builddir) $(GOBJECT_CFLAGS) -Wno-error
  GTKDOC_LIBS= $(GOBJECT_LIBS) \
--	$(top_builddir)/$(DOC_MODULE)/lib$(DOC_MODULE)@GCR_VERSION_SUFFIX@.la \
-+	$(top_builddir)/gcr/libmategcr@GCR_VERSION_SUFFIX@.la \
+-	$(top_builddir)/$(DOC_MODULE)/libmate$(DOC_MODULE)@GCR_VERSION_SUFFIX@.la \
++	$(top_builddir)/$(SRC_MODULE)/libmategcr@GCR_VERSION_SUFFIX@.la \
  	$(top_builddir)/gck/libmategck.la
  
  # This includes the standard gtk-doc make rules, copied by gtkdocize.
@@ -69,25 +79,35 @@
  GcrCertificateDetailsWidget*  gcr_certificate_details_widget_new                    (GcrCertificate *cert);
  
  GcrCertificate*               gcr_certificate_details_widget_get_certificate        (GcrCertificateDetailsWidget *details);
---- mate-keyring-1.6.0/docs/reference/gck/Makefile.am.orig	2013-03-31 12:28:51.000000000 +0200
-+++ mate-keyring-1.6.0/docs/reference/gck/Makefile.am	2013-12-30 08:01:43.787654100 +0100
-@@ -49,8 +49,8 @@
+--- mate-keyring-1.6.1/docs/reference/gck/Makefile.am.orig	2014-01-01 13:15:45.000000000 +0100
++++ mate-keyring-1.6.1/docs/reference/gck/Makefile.am	2014-01-02 17:27:53.098684281 +0100
+@@ -9,7 +9,8 @@
+ # of using the various options.
+ 
+ # The name of the module, e.g. 'glib'.
+-DOC_MODULE=gck
++DOC_MODULE=mate-gck
++SRC_MODULE=gck
+ 
+ # Uncomment for versioned docs and specify the version of the module, e.g. '2'.
+ #DOC_MODULE_VERSION=2
+@@ -49,8 +50,8 @@
  # Used for dependencies. The docs will be rebuilt if any of these change.
  # e.g. HFILE_GLOB=$(top_srcdir)/gtk/*.h
  # e.g. CFILE_GLOB=$(top_srcdir)/gtk/*.c
 -HFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.h
 -CFILE_GLOB=$(top_srcdir)/$(DOC_MODULE)/*.c
-+HFILE_GLOB=$(top_srcdir)/gck/*.h
-+CFILE_GLOB=$(top_srcdir)/gck/*.c
++HFILE_GLOB=$(top_srcdir)/$(SRC_MODULE)/*.h
++CFILE_GLOB=$(top_srcdir)/$(SRC_MODULE)/*.c
  
  # Extra header to include when scanning, which are not under DOC_SOURCE_DIR
  # e.g. EXTRA_HFILES=$(top_srcdir}/contrib/extra.h
-@@ -79,7 +79,7 @@
+@@ -79,7 +80,7 @@
  # e.g. GTKDOC_CFLAGS=-I$(top_srcdir) -I$(top_builddir) $(GTK_DEBUG_FLAGS)
  # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
  GTKDOC_CFLAGS= -I$(top_srcdir) -I$(top_builddir) $(GOBJECT_CFLAGS) -Wno-error
--GTKDOC_LIBS= $(GOBJECT_LIBS) $(top_builddir)/$(DOC_MODULE)/lib$(DOC_MODULE).la
-+GTKDOC_LIBS= $(GOBJECT_LIBS) $(top_builddir)/gck/libmategck.la
+-GTKDOC_LIBS= $(GOBJECT_LIBS) $(top_builddir)/$(DOC_MODULE)/libmate$(DOC_MODULE).la
++GTKDOC_LIBS= $(GOBJECT_LIBS) $(top_builddir)/$(SRC_MODULE)/libmategck.la
  
  # This includes the standard gtk-doc make rules, copied by gtkdocize.
  include $(top_srcdir)/gtk-doc.make
