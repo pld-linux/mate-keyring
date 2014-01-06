@@ -7,7 +7,7 @@ Summary:	Keep passwords and other user's secrets
 Summary(pl.UTF-8):	Przechowywanie haseł i innych tajnych danych użytkowników
 Name:		mate-keyring
 Version:	1.6.1
-Release:	1
+Release:	2
 License:	LGPL v2+ (library), GPL v2+ (programs)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
@@ -139,7 +139,7 @@ w czasie logowania użytkownika i uruchamiania demona keyring.
 	--with-html-dir=%{_gtkdocdir} \
 	--with-pam-dir=/%{_lib}/security \
 	--with-root-certs=%{_sysconfdir}/certs
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
