@@ -19,7 +19,7 @@ BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-devel >= 1.0
 BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gettext-devel >= 0.10.40
+BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.20.0}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
